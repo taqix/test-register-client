@@ -3,9 +3,12 @@ import React from "react";
 import RegisterButton from "./RegisterButton";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useNavigation } from '@react-navigation/native';
+const settings = require('./Settings.json')
 const ItemFlat = (props) => {
+  const navigation = useNavigation();
   const openDetails = () => {
-    fetch("http://10.0.1.48:4000/openDetails", {
+    fetch(settings.openDetails, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -15,9 +18,12 @@ const ItemFlat = (props) => {
       }),
     })
       .then((response) => response.json())
-      .then((data) => {props.navigation.navigate("detailsScreen",data.user);})
+      .then((data) => {navigation.navigate("detailsScreen",data.user);})
       .catch((error) => console.error(error));
   };
+  const handleDeletePress = (itemDataCount)=>{
+    props.delete(itemDataCount)
+  }
   return (
     <View style={styles.container}>
       <View style={styles.bigBox}>
@@ -34,7 +40,7 @@ const ItemFlat = (props) => {
             <RegisterButton click={openDetails} text="DETAILS" color="#6CB2D9" />
           </View>
           <View style={{ width: 80 }}>
-            <RegisterButton click={() => {}} text="DELETE" color="#6CB2D9" />
+            <RegisterButton click={() => {handleDeletePress(props.count)}} text="DELETE" color="#6CB2D9" />
           </View>
         </View>
         <View style={styles.smallBox2}>

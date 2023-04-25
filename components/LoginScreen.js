@@ -15,7 +15,7 @@ import RegisterButton from "./RegisterButton";
 import MyAlert from "./MyAlert";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+const settings = require('./Settings.json')
 const LoginScreen = ({ navigation }) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -35,7 +35,7 @@ const LoginScreen = ({ navigation }) => {
     };
 
     try {
-      const response = await fetch("http://10.0.1.48:4000/register", {
+      const response = await fetch(settings.register, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

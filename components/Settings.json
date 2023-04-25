@@ -1,0 +1,6 @@
+{
+    "register":"http://172.20.10.2:4000/register",
+    "allData":"http://172.20.10.2:4000/allData",
+    "delete":"http://172.20.10.2:4000/deleteItem",
+    "openDetails":"http://172.20.10.2:4000/openDetails"
+}
